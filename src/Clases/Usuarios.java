@@ -9,14 +9,14 @@ package Clases;
 */
 
 public class Usuarios {
-    private String code;      //Parecido al NIT
+    private int code;      //Parecido al NIT
     private String password;  //1234 por default, luego al editar el usuario se podra cambiar
     private String nombre;    
     private String correo;
     private String genero;    //M ó F
     private int rol;
 
-    public Usuarios(String code, String password, String nombre, String correo, String genero, int rol) {
+    public Usuarios(int code, String password, String nombre, String correo, String genero, int rol) {
         this.code = code;
         this.password = password;
         this.nombre = nombre;
@@ -28,7 +28,7 @@ public class Usuarios {
     public void mostrarDatos(){
         System.out.print("Código: " + code);
         System.out.print("  Nombre: " + nombre);
-//        System.out.print("  Contraseña: " + password);
+        System.out.print("  Contraseña: " + password);
         System.out.print("  Correo: " + correo);
         System.out.print("  Genero: " + genero);
         if (rol == 0) System.out.print("  Administrador\n");
@@ -56,11 +56,11 @@ public class Usuarios {
         }
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -103,4 +103,9 @@ public class Usuarios {
     public void setRol(int rol) {
         this.rol = rol;
     }  
+
+    @Override
+    public String toString() {
+        return "Usuarios{" + "code=" + code + ", password=" + password + ", nombre=" + nombre + ", correo=" + correo + ", genero=" + genero + ", rol=" + rol + '}';
+    }
 }

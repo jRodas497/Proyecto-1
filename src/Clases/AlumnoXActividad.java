@@ -1,13 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Clases;
 
-/**
- *
- * @author Usuario
- */
 public class AlumnoXActividad {
+    private int codigo;
+    private int alumno;
+
+    public AlumnoXActividad(int codigo, int alumno) {
+        this.codigo = codigo;
+        this.alumno = alumno;
+    }
+    
+    public void mostrarRelacion(){
+        System.out.print("Codigo: "+codigo);
+        System.out.print("   Alumno: "+alumno);
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(int alumno) {
+        this.alumno = alumno;
+    }
+    
     
 }
