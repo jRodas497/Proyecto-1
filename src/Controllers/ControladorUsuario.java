@@ -1,13 +1,19 @@
 package Controllers;
 
+import Clases.Listas;
 import Clases.Usuarios;
 import java.util.ArrayList;
 
 public class ControladorUsuario {
     private ArrayList <Usuarios> usuarios;
+    Listas listas;
 
     public ControladorUsuario() {
         usuarios = new ArrayList<>();
+    }
+    
+    public void recibirListas(Listas listas){
+        this.listas = listas;
     }
     
     public Usuarios usuarioExist(int code){
@@ -24,28 +30,40 @@ public class ControladorUsuario {
         return size;
     }
         
-    public void mostrarUsuarios(){
+    public Usuarios mostrarUsuarios(){
         int size = usuarios.size();
         
         for (int i = 0; i < size; i++) {
             usuarios.get(i).mostrarDatos();
-        }        
+        }   
+        return null;
     }
     
-    public void mostrarProfesores(){
+    public Usuarios mostrarProfesores(){
         int size = usuarios.size();
         
         for (int i = 0; i < size; i++) {
             usuarios.get(i).mostrarProfesores();
-        }        
+        }      
+        return null;
     }
     
-    public void mostrarAlumnos(){
+    public Usuarios mostrarAlumnos(){
         int size = usuarios.size();
         
         for (int i = 0; i < size; i++) {
             usuarios.get(i).mostrarAlumnos();
         }        
+        return null;
+    }
+    
+    public Usuarios datosUsuario(int code){
+        int size = usuarios.size();
+        
+        for (int i = 0; i < size; i++) {
+            usuarios.get(i).datosUsuario(code);
+        }        
+        return null;
     }
     
     public void addProfesor(int code, String password, String nombre, String correo, String genero, int rol){
@@ -55,7 +73,7 @@ public class ControladorUsuario {
         
         if (usuarioExist(code) == null) {
             usuarios.add(new Usuarios(code, "1234", nombre, c1 + "@gmail.com", genero, 1));
-//            mensaje("Se registro el usuario (Profesor): "  + code + ", " + nombre + ", " + correo + ", " + genero);
+            mensaje("Se registro el usuario (Profesor): "  + code + ", " + nombre + ", " + correo + ", " + genero);
         }else{
             mensaje("El usuario ya existe");
         }
@@ -68,7 +86,7 @@ public class ControladorUsuario {
         
         if (usuarioExist(code) == null) {
             usuarios.add(new Usuarios(code, "1234", nombre, c1 + "@gmail.com", genero, 2));
-//            mensaje("Se registro el usuario (Alumno): " + code + ", " + nombre + ", " + correo + ", " + genero);
+            mensaje("Se registro el usuario (Alumno): " + code + ", " + nombre + ", " + correo + ", " + genero);
         }else{
             mensaje("El usuario ya existe");
         }
@@ -81,19 +99,20 @@ public class ControladorUsuario {
         
         if (usuarioExist(code) == null) {
             usuarios.add(new Usuarios(code, "admin", nombre,c1 + "@admin.com", genero, 0));
-//            mensaje("Se registro el usuario (Alumno): " + code + ", " + nombre + ", " + correo + ", " + genero);
+            mensaje("Se registro el usuario (Alumno): " + code + ", " + nombre + ", " + correo + ", " + genero);
         }else{
             mensaje("El usuario ya existe");
         }
     }
     
-    public boolean login(int code, String password){
-        if (usuarioExist(code) != null) {
-            return true;
-        }else{
-            mensaje("No existe un usuario con el código: " + code);
-            return false;
-        }
+    public Usuarios login(int code, String password){
+        int size = usuarios.size();
+        
+            for (int i = 0; i < size; i++) {
+                if(usuarios.get(i).getCode() == code) return usuarios.get(i);
+            }
+        
+        return null;
     }
     
     public void editarUsuario(int code, String password, String nombre, String correo){
@@ -107,7 +126,7 @@ public class ControladorUsuario {
             }
         }
     }
-
+ 
     private void mensaje(String msj){
         System.out.println(msj);
     }

@@ -1,11 +1,11 @@
 package Clases;
 
 public class Actividad {
-    private int codigo;
+    private int codigo;             //Únicamente datos númericos
     private String nombre;
     private String descripcion;
     private int punteo;             //Mayor a 1 y menor a 100
-    private int curso;           //Curso al que la actividad esta asignada
+    private int curso;              //Curso al que la actividad esta asignada
 
     public Actividad(int codigo, String nombre, String descripcion, int punteo, int curso) {
         this.codigo = codigo;

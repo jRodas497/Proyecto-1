@@ -55,6 +55,16 @@ public class Usuarios {
             System.out.print("  Genero: " + genero + "\n");
         }
     }
+    
+    public void datosUsuario(int codigo){
+        if (code == codigo){
+            System.out.print("Código: " + code);
+            System.out.print("  Nombre: " + nombre);
+            System.out.print("  Contraseña: " + password);
+            System.out.print("  Correo: " + correo);
+            System.out.print("  Genero: " + genero + "\n");
+        }
+    }
 
     public int getCode() {
         return code;

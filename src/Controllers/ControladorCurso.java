@@ -1,17 +1,21 @@
 package Controllers;
 
 import Clases.Curso;
-import Controllers.ControladorUsuario;
+import Clases.Listas;
 import java.util.ArrayList;
 
 public class ControladorCurso {
-    ControladorUsuario controladorUsuario = new ControladorUsuario();
     private ArrayList <Curso> cursos;
+    Listas listas;
     
     public ControladorCurso() {
         cursos = new ArrayList<>();
     }
-       
+    
+    public void recibirListas(Listas listas){
+        this.listas = listas;
+    }
+    
     public int acumulado(int codigo){
         int size = cursos.size();
         for (int i = 0; i < size; i++) {
@@ -38,7 +42,7 @@ public class ControladorCurso {
         if (creditos > 0 && creditos <= 10) {
             if (!cursoExist(codigo)) {
                 cursos.add(new Curso(nombreCurso, codigo, profesor, creditos, 0));
-//                mensaje("Curso añadido: " + nombreCurso + ", " + codigo + ", " + profesor + ", " + creditos);
+                mensaje("Curso añadido: " + nombreCurso + ", " + codigo + ", " + profesor + ", " + creditos);
             }else{
                 mensaje("Ya existe un curso con este código");
             }
@@ -54,12 +58,10 @@ public class ControladorCurso {
             for (int i = 0; i < size; i++) {
                 cursos.get(i).mostrarDatos();
             }
-        }else{
-        
-        }        
+        }
     }
     
-    public void editarCurso(int codigo, String nombre, int creditos, int acumulado){
+    public void editarCurso(int codigo, String nombre, int creditos, int acumulado){    
         int size = cursos.size();
         for (int i = 0; i < size; i++) {
             if(cursos.get(i).getCodigo() == codigo){
@@ -89,7 +91,7 @@ public class ControladorCurso {
                 if (cursoExist(codigo)) {
 
                     cursos.get(i).setAcumulado(acumulado);
-                    mensaje("Curso editado con exito!");
+                    
                     i = size;
                 }else{
                     mensaje("Codigo del curso inexistente");

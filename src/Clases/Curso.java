@@ -56,7 +56,7 @@ public class Curso {
     }
     
     public int getAcumulado() {
-        return creditos;
+        return acumulado;
     }
 
     public void setAcumulado(int acumulado) {
@@ -65,6 +65,8 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{" + "nombreCurso=" + nombreCurso + ", codigo=" + codigo + ", profesor=" + profesor + ", creditos=" + creditos + '}';
+        return "Curso{" + "nombreCurso=" + nombreCurso + ", codigo=" + codigo + ", profesor=" + profesor + ", creditos=" + creditos + ", acumulado=" + acumulado + '}';
     }
+
+    
 }

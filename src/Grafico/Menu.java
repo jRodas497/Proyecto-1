@@ -1,17 +1,20 @@
 package Grafico;
 
+import Clases.Listas;
 import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
+    Listas listas;
 
-    /**
-     * Creates new form Menu
-     */
     public Menu() {
         initComponents();
     }
 
-    private void Mensaje(String msj){
+    public void recibirListas(Listas listas){
+        this.listas = listas;
+    }
+    
+    private void mensaje(String msj){
         JOptionPane.showMessageDialog(null, msj);
     }
     

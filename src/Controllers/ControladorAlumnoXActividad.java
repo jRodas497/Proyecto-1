@@ -1,21 +1,23 @@
 package Controllers;
 
 import Clases.AlumnoXActividad;
+import Clases.Listas;
 import java.util.ArrayList;      
 
 public class ControladorAlumnoXActividad {
-    ControladorUsuario controladorUsuario = new ControladorUsuario();
-    ControladorActividad controladorActividad = new ControladorActividad();
     private ArrayList <AlumnoXActividad> almxact;
+        Listas listas;
+
+    public void recibirListas(Listas listas){
+        this.listas = listas;
+    }
     
     public ControladorAlumnoXActividad() {
         almxact = new ArrayList();
     }
     
     public void actividadExist(int codigo){
-        if(controladorActividad.actividadExist(codigo)){
-               
-        }
+        
     }
     
     private void mensaje(String msj){

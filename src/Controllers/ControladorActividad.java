@@ -1,17 +1,22 @@
 package Controllers;
 
 import Clases.Actividad;
-import Controllers.ControladorCurso;
+import Clases.Listas;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class ControladorActividad {
+public class ControladorActividad implements Serializable{
     private ArrayList <Actividad> actividades;
-    ControladorCurso controladorCurso = new ControladorCurso(); 
+    Listas listas;
     
     public ControladorActividad() {
         actividades = new ArrayList<>();
     }
-    
+
+    public void recibirListas(Listas listas){
+        this.listas = listas;
+    }
+
     public boolean actividadExist(int codigo){
         int size = actividades.size();
         
@@ -38,42 +43,37 @@ public class ControladorActividad {
     }
     
     public void addActividad(int codigo, String nombre, String descripcion, int punteo, int curso){
-        if (!actividadExist(codigo)) {
+        int acumuladoTotal = listas.controladorCurso.acumulado(codigo);
+        
+        if (punteo > 0 || punteo < 101) {
             if (punteo100(punteo, curso)) {
-                
-                    actividades.add(new Actividad(codigo, nombre, descripcion, punteo, curso));
-//                    mensaje("Se añadio la actividad");
-                
-            }else{
-                mensaje("Actividad no valida");
-            }
+                actividades.add(new Actividad(codigo, nombre, descripcion, punteo, curso));
+                mensaje("Se añadio la actividad: " + nombre);
+            }            
         }else{
-            mensaje("la actividad ya existe");
+            mensaje("Punteo no valido");
         }
     }
     
     public boolean punteo100(int pts, int curso){
-        if(controladorCurso.cursoExist(curso)){
+        if(!listas.controladorCurso.cursoExist(curso)){
             mensaje("El curso no existe");
             return false;
         }else{
             if (pts < 0) {
               mensaje("El puntaje de la actividad no puede ser negativo.");
-            } else if (controladorCurso.acumulado(curso) + pts > 100) {
+              return false;
+            } else if (listas.controladorCurso.acumulado(curso) + pts > 100) {
                 mensaje("El acumulado total no puede exceder 100.");
-            } else {
-                int acumuladoTotal = controladorCurso.acumulado(curso);
-                acumuladoTotal = acumuladoTotal + pts;
-                acumulado(curso,acumuladoTotal);
                 
+            } else {    
+                int acumuladoTotal = listas.controladorCurso.acumulado(curso);
+                acumuladoTotal = acumuladoTotal + pts;
+                listas.controladorCurso.cambiarAcumulado(curso, acumuladoTotal);      
+                return true;
             }
-        }   
-        return true;
-    }
-    
-    public void acumulado(int curso, int pts){
-        controladorCurso.cambiarAcumulado(curso, pts);
-        System.out.println(curso + ", "+ pts);
+        }
+        return false;
     }
     
     private void mensaje(String msj){
