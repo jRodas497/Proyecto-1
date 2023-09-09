@@ -1,6 +1,8 @@
 package Clases;
 
-public class Actividad {
+import java.io.Serializable;
+
+public class Actividad implements Serializable{
     private int codigo;             //Únicamente datos númericos
     private String nombre;
     private String descripcion;

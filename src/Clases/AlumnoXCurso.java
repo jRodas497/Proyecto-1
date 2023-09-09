@@ -1,6 +1,8 @@
 package Clases;
 
-public class AlumnoXCurso {
+import java.io.Serializable;
+
+public class AlumnoXCurso implements Serializable{
     
     
 }

@@ -2,9 +2,10 @@ package Controllers;
 
 import Clases.Curso;
 import Clases.Listas;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ControladorCurso {
+public class ControladorCurso implements Serializable {
     private ArrayList <Curso> cursos;
     Listas listas;
     

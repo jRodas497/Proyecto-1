@@ -1,39 +1,64 @@
 package proyecto1_00389;
 import Grafico.Login;
 import Clases.Listas;
-import Grafico.VistaAdmin;
+import Grafico.Admin.VistaAdmin;
 
 public class Proyecto1_00389 {
 
     public static void main(String[] args) {            
-        Listas datosListas = new Listas();
+        Listas listas = new Listas();
         
-        datosListas.controladorActividad.recibirListas(datosListas);
-        datosListas.controladorCurso.recibirListas(datosListas);
-        datosListas.controladorUsuario.recibirListas(datosListas);
-        datosListas.controladorAlmXAct.recibirListas(datosListas);
+        listas.controladorActividad.recibirListas(listas);
+        listas.controladorCurso.recibirListas(listas);
+        listas.controladorUsuario.recibirListas(listas);
+        listas.controladorAlmXAct.recibirListas(listas);
         
         
-        datosListas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
-        datosListas.controladorUsuario.addProfesor(1545415, "", "José", "", "M", 1);
-        datosListas.controladorUsuario.addAdmin(12345678, "", "Juan Rodas", "", "M", 0);
-        
-        datosListas.controladorCurso.addCurso("IPC 1", 770, "1545415", 5,0);
-        datosListas.controladorCurso.addCurso("MB1", 123, "12345678", 8,0);
-        datosListas.controladorCurso.addCurso("Logica", 420, "12345678", 8,0);
+        listas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
 
-        datosListas.controladorActividad.addActividad(1121, "HT #1", "ASDASDASDkjkljlkjkl", 81, 770);
-        datosListas.controladorActividad.addActividad(11421, "HT #2", "asdasdplplpl", 14, 770);
-        datosListas.controladorActividad.addActividad(18, "HT #3", "yhbyhbsadkfgf", 20, 123);
-        datosListas.controladorActividad.addActividad(8488, "HT #4", "ikuj1212jkhkdsf", 80, 123);
-        datosListas.controladorActividad.addActividad(1520, "HT #5", "sdhniunvriuvi", 1, 770);
+        listas.controladorUsuario.addAlumno(15954845, "", "María", "", "F", 2);
+        listas.controladorUsuario.addAlumno(98765432, "", "Carlos", "", "M", 2);
+        listas.controladorUsuario.addAlumno(24681357, "", "Laura", "", "F", 2);
+        listas.controladorUsuario.addAlumno(13579246, "", "Javier", "", "M", 2);
+        listas.controladorUsuario.addAlumno(36985214, "", "Ana", "", "F", 2);
+        listas.controladorUsuario.addAlumno(78945612, "", "Luis", "", "M", 2);
+        listas.controladorUsuario.addAlumno(65412398, "", "Isabel", "", "F", 2);
+        listas.controladorUsuario.addAlumno(56789012, "", "Roberto", "", "M", 2);
+        listas.controladorUsuario.addAlumno(98127634, "", "Sofía", "", "F", 2);
+        listas.controladorUsuario.addAlumno(43210987, "", "Diego", "", "M", 2);
+        
+        listas.controladorUsuario.addProfesor(1545415, "", "José", "", "M", 1);
+        listas.controladorUsuario.addProfesor(24681359, "", "Luisa", "", "F", 3);
+        listas.controladorUsuario.addProfesor(13579248, "", "Pedro", "", "M", 4);
+        listas.controladorUsuario.addProfesor(98765434, "", "Marta", "", "F", 5);
+        listas.controladorUsuario.addProfesor(36985216, "", "Andrés", "", "M", 6);
+        listas.controladorUsuario.addProfesor(12345670, "", "Elena", "", "F", 7);
+        listas.controladorUsuario.addProfesor(78945614, "", "José", "", "M", 8);
+        listas.controladorUsuario.addProfesor(65412392, "", "Ana María", "", "F", 9);
+        listas.controladorUsuario.addProfesor(56789014, "", "Raúl", "", "M", 10);
+        listas.controladorUsuario.addProfesor(98127636, "", "Carolina", "", "F", 11);
+        listas.controladorUsuario.addProfesor(43210989, "", "Marcelo", "", "M", 12);
+        
+        listas.controladorUsuario.addAdmin(1, "", "Juan Rodas", "", "M", 0);
+        
+        listas.controladorCurso.addCurso("IPC 1", 770, "1545415", 5,0);
+        listas.controladorCurso.addCurso("MB1", 123, "12345678", 8,0);
+        listas.controladorCurso.addCurso("Logica", 420, "12345678", 8,0);
 
-//        Login login = new Login();
-//        login.recibirListas(datosListas);
-//        login.setVisible(true);   
+        listas.controladorActividad.addActividad(1121, "HT #1", "ASDASDASDkjkljlkjkl", 81, 770);
+        listas.controladorActividad.addActividad(11421, "HT #2", "asdasdplplpl", 14, 770);
+        listas.controladorActividad.addActividad(18, "HT #3", "yhbyhbsadkfgf", 20, 123);
+        listas.controladorActividad.addActividad(8488, "HT #4", "ikuj1212jkhkdsf", 80, 123);
+        listas.controladorActividad.addActividad(1520, "HT #5", "sdhniunvriuvi", 1, 770);
 
-        VistaAdmin admin = new VistaAdmin();
-        admin.recibirListas(datosListas);
-        admin.setVisible(true);   
+        Login login = new Login();
+        login.recibirListas(listas);
+        login.setVisible(true);   
+        
+        listas.controladorUsuario.cantidadGenero();
+
+//        VistaAdmin admin = new VistaAdmin();
+//        admin.recibirListas(datosListas);
+//        admin.setVisible(true);   
     }    
 }

@@ -2,9 +2,10 @@ package Controllers;
 
 import Clases.AlumnoXActividad;
 import Clases.Listas;
+import java.io.Serializable;
 import java.util.ArrayList;      
 
-public class ControladorAlumnoXActividad {
+public class ControladorAlumnoXActividad implements Serializable{
     private ArrayList <AlumnoXActividad> almxact;
         Listas listas;
 

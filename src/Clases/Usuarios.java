@@ -1,5 +1,7 @@
 package Clases;
 
+import java.io.Serializable;
+
 /*
     ROLES---->
     
@@ -8,8 +10,8 @@ package Clases;
     2 = Alumno
 */
 
-public class Usuarios {
-    private int code;      //Parecido al NIT
+public class Usuarios implements Serializable{
+    private int code;         //Parecido al NIT
     private String password;  //1234 por default, luego al editar el usuario se podra cambiar
     private String nombre;    
     private String correo;

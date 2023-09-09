@@ -1,10 +1,13 @@
 package Grafico;
 
+import Grafico.Admin.VistaAdmin;
 import Clases.Listas;
+import Clases.Usuarios;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     Listas listas;
+    Usuarios usuario;
     private String code;
     private String password;
 
@@ -17,6 +20,10 @@ public class Login extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
+    }
+    
+    public void rebirUsuario(Usuarios usuario){
+        this.usuario = usuario;
     }
     
     private void mensaje(String msj){
@@ -143,7 +150,7 @@ public class Login extends javax.swing.JFrame {
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
         // TODO add your handling code here:
         txtCode.setText(null);
-        txtPassword.setText(null);
+        txtPassword.setText(null);        
     }//GEN-LAST:event_btnCleanActionPerformed
 
     public void registrar(){
@@ -157,6 +164,7 @@ public class Login extends javax.swing.JFrame {
         
         if(!incomplete.equals("")) mensaje("Favor de llenar los campos de " + incomplete);
         
+        code.replaceAll("[^0-9]", "");
         int number = Integer.parseInt(code);
         
         if (!incomplete.equals("")){
@@ -174,7 +182,7 @@ public class Login extends javax.swing.JFrame {
             
             }
         }else if(code == "" || password == ""){
-            mensaje("Favor de llenar los campo");
+            mensaje("Favor de llenar los campos");
         }else{
             mensaje("Su usuario y contraseña no coindiden :(");
         }
@@ -184,6 +192,10 @@ public class Login extends javax.swing.JFrame {
         VistaAdmin admin = new VistaAdmin();
         admin.setVisible(true);
         admin.recibirListas(listas);
+        
+        int number = Integer.parseInt(code);
+        admin.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
+        
         this.dispose();        
     }
     

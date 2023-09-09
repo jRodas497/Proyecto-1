@@ -1,6 +1,8 @@
 package Clases;
 
-public class AlumnoXActividad {
+import java.io.Serializable;
+
+public class AlumnoXActividad implements Serializable{
     private int codigo;
     private int alumno;
 
