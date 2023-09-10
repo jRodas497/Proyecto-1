@@ -17,14 +17,14 @@ public class Proyecto1_00389 {
         listas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
 
         listas.controladorUsuario.addAlumno(15954845, "", "María", "", "F", 2);
-        listas.controladorUsuario.addAlumno(98765432, "", "Carlos", "", "M", 2);
+        listas.controladorUsuario.addAlumno(98768032, "", "Carlos", "", "M", 2);
         listas.controladorUsuario.addAlumno(24681357, "", "Laura", "", "F", 2);
         listas.controladorUsuario.addAlumno(13579246, "", "Javier", "", "M", 2);
         listas.controladorUsuario.addAlumno(36985214, "", "Ana", "", "F", 2);
         listas.controladorUsuario.addAlumno(78945612, "", "Luis", "", "M", 2);
         listas.controladorUsuario.addAlumno(65412398, "", "Isabel", "", "F", 2);
-        listas.controladorUsuario.addAlumno(56789012, "", "Roberto", "", "M", 2);
-        listas.controladorUsuario.addAlumno(98127634, "", "Sofía", "", "F", 2);
+        listas.controladorUsuario.addAlumno(56774212, "", "Roberto", "", "M", 2);
+        listas.controladorUsuario.addAlumno(98145634, "", "Sofía", "", "F", 2);
         listas.controladorUsuario.addAlumno(43210987, "", "Diego", "", "M", 2);
         
         listas.controladorUsuario.addProfesor(1545415, "", "José", "", "M", 1);
@@ -56,6 +56,17 @@ public class Proyecto1_00389 {
         login.setVisible(true);   
         
         listas.controladorUsuario.cantidadGenero();
+        
+//        listas.controladorUsuario.cantidadAlumnosF();
+//        listas.controladorUsuario.cantidadAlumnosM();
+//        listas.controladorUsuario.cantidadProfesoresF();
+//        listas.controladorUsuario.cantidadProfesoresM();
+        
+        listas.controladorUsuario.porcentajeAlumnosM();
+        listas.controladorUsuario.porcentajeAlumnosF();
+        listas.controladorUsuario.porcentajeProfesoresM();
+        listas.controladorUsuario.porcentajeProfesoresF();
+        
 
 //        VistaAdmin admin = new VistaAdmin();
 //        admin.recibirListas(datosListas);

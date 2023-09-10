@@ -103,7 +103,7 @@ public class ControladorUsuario implements Serializable{
         c1 = c1.replaceAll("\\s","");
         
         if (usuarioExist(code) == null) {
-            usuarios.add(new Usuarios(code, "admin", nombre,c1 + "@admin.com", genero, 0));
+            usuarios.add(new Usuarios(code, "1234", nombre,c1 + "@gmail.com", genero, 0));
             mensaje("Se registro el usuario (Administrador): " + code + ", " + nombre + ", " + correo + ", " + genero);
             return true;
         }else{
@@ -149,9 +149,7 @@ public class ControladorUsuario implements Serializable{
         }
         return false;
     }
-    
-    
-    
+     
     public Usuarios getElemento(int i){
         return this.usuarios.get(i);
     }
@@ -169,6 +167,112 @@ public class ControladorUsuario implements Serializable{
         
         return count;
     }
+    
+    //********************************************************//
+    
+    public int totalAlumnos(){
+        int size = usuarios.size();
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 2) {
+                count ++;
+            }
+        }
+        return count;
+    }
+    
+    public int totalProfesores(){
+        int size = usuarios.size();
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 1) {
+                count ++;
+            }
+        }
+        return count;
+    }
+    
+    //********************************************************//
+    
+    public int cantidadAlumnosM(){
+        int size = usuarios.size();
+        int count = 0;
+        
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 2 && usuarios.get(i).getGenero().equals("M")) count ++;
+        }
+        System.out.print("Cantidad de alumnos hombres: " + count + "\n");
+        return count;
+    }
+    
+    public int porcentajeAlumnosM(){
+        int total = totalAlumnos();
+        int alumnosM = (100*cantidadAlumnosM())/total;
+        System.out.println("El porcentaje de alumnos hombres es de: " + alumnosM + "%");
+        return alumnosM;
+    }
+    
+    //********************************************************//
+    
+    public int cantidadAlumnosF(){
+        int size = usuarios.size();
+        int count = 0;
+        
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 2 && usuarios.get(i).getGenero().equals("F")) count ++;
+        }
+        System.out.print("Cantidad de alumnas mujeres: " + count + "\n");
+        return count;
+    }
+    
+    public int porcentajeAlumnosF(){
+        int total = totalAlumnos();
+        int alumnosF = (100*cantidadAlumnosF())/total;
+        System.out.println("El porcentaje de alumnas mujeres es de:" + alumnosF + "%");
+        return alumnosF;
+    }
+    
+    //********************************************************//
+    
+    public int cantidadProfesoresM(){
+        int size = usuarios.size();
+        int count = 0;
+        
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 1 && usuarios.get(i).getGenero().equals("M")) count ++;
+        }
+        System.out.print("Cantidad de profesores hombres: " + count + "\n");
+        return count;
+    }
+    
+    public int porcentajeProfesoresM(){
+        int total = totalProfesores();
+        int profesoresM = (100*cantidadProfesoresM())/total;
+        System.out.println("El porcentaje de profesores hombres es de: " + profesoresM + "%");
+        return profesoresM;
+    }
+    
+    //********************************************************//
+    
+    public int cantidadProfesoresF(){
+        int size = usuarios.size();
+        int count = 0;
+        
+        for (int i = 0; i < size; i++) {
+            if (usuarios.get(i).getRol() == 1 && usuarios.get(i).getGenero().equals("F")) count ++;
+        }
+        System.out.print("Cantidad de profesoras mujeres: " + count + "\n");
+        return count;
+    }
+    
+    public int porcentajeProfesoresF(){
+        int total = totalProfesores();
+        int profesoresF = (100*cantidadProfesoresF())/total;
+        System.out.println("El porcentaje de alumnos hombres es de: " + profesoresF + "%");
+        return profesoresF;        
+    }
+
+    //********************************************************//
     
     private void mensaje(String msj){
         System.out.println(msj);

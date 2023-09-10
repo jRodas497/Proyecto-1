@@ -190,7 +190,7 @@ public class AgregarAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     public void agregar(){
-        code.replaceAll("[^0-9]", "");
+        code.replaceAll("^[0-9]","");
         int number = Integer.parseInt(code);        
         
         if (genero) {

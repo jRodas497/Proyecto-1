@@ -164,7 +164,7 @@ public class Login extends javax.swing.JFrame {
         
         if(!incomplete.equals("")) mensaje("Favor de llenar los campos de " + incomplete);
         
-        code.replaceAll("[^0-9]", "");
+        code.replaceAll("^[0-9]","");
         int number = Integer.parseInt(code);
         
         if (!incomplete.equals("")){
@@ -193,6 +193,7 @@ public class Login extends javax.swing.JFrame {
         admin.setVisible(true);
         admin.recibirListas(listas);
         
+        code.replaceAll("^[0-9]","");
         int number = Integer.parseInt(code);
         admin.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
         
