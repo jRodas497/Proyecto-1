@@ -56,7 +56,7 @@ public class ControladorActividad implements Serializable{
     }
     
     public boolean punteo100(int pts, int curso){
-        if(!listas.controladorCurso.cursoExist(curso)){
+        if(listas.controladorCurso.cursoExist(curso) == null){
             mensaje("El curso no existe");
             return false;
         }else{

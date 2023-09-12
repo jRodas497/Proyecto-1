@@ -1,0 +1,10 @@
+Matematica,155,12345678,2
+Lenguaje Ingles,312,23456789,3
+Lenguaje Aleman,999,34567890,4
+Kaqchikel,348,45678901,5
+Enfermeria,111,56789012,6
+Receso,821,56788112,7
+IPC 3,433,45248020,8
+Ciencias,151,23456780,2
+Electronica,195,12345670,5
+Religión,462,90123456,7

@@ -130,7 +130,10 @@ public class VistaAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProfesoresActionPerformed
 
     private void btnCursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCursosActionPerformed
-        // TODO add your handling code here:
+        Cursos cursos = new Cursos();
+        cursos.recibirListas(listas);
+        cursos.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnCursosActionPerformed
 
     /**

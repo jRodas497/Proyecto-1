@@ -1,5 +1,6 @@
 package Grafico.Admin;
 
+import Archivos.PDF;
 import Archivos.Texto;
 import Clases.Listas;
 import Clases.Usuarios;
@@ -147,8 +148,9 @@ public class Profesores extends javax.swing.JFrame {
         jLabel6.setText("Código");
 
         txtcode.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        txtcode.setEnabled(false);
+        txtcode.setFocusable(false);
         txtcode.setOpaque(false);
+        txtcode.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout panelGraficaProfesoresLayout = new javax.swing.GroupLayout(panelGraficaProfesores);
         panelGraficaProfesores.setLayout(panelGraficaProfesoresLayout);
@@ -311,7 +313,9 @@ public class Profesores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargaMasivaActionPerformed
 
     private void pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfActionPerformed
-        // TODO add your handling code here:
+        PDF pdf = new PDF();
+        pdf.crearDocUsuarios("Archivos//Listado de Profesores", listas.controladorUsuario, 1); 
+        mensaje("Se creo el pdf con el listado!");
     }//GEN-LAST:event_pdfActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

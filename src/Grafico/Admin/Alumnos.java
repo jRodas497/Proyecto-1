@@ -1,6 +1,7 @@
 package Grafico.Admin;
 
 import Archivos.Binario;
+import Archivos.PDF;
 import Archivos.Texto;
 import Clases.Listas;
 import Clases.Usuarios;
@@ -28,7 +29,7 @@ public class Alumnos extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
-        paneles();
+        //paneles();
         llenarTabla();
     }
 
@@ -159,8 +160,9 @@ public class Alumnos extends javax.swing.JFrame {
         jLabel6.setText("Código");
 
         txtcode.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        txtcode.setEnabled(false);
+        txtcode.setFocusable(false);
         txtcode.setOpaque(false);
+        txtcode.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout panelGraficaAlumnosLayout = new javax.swing.GroupLayout(panelGraficaAlumnos);
         panelGraficaAlumnos.setLayout(panelGraficaAlumnosLayout);
@@ -271,6 +273,7 @@ public class Alumnos extends javax.swing.JFrame {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Correo");
         modeloTabla.addColumn("Contraseña");
+        modeloTabla.addColumn("Genero");
         
         int tam = this.listas.controladorUsuario.size();
         
@@ -278,15 +281,15 @@ public class Alumnos extends javax.swing.JFrame {
         for (int i = 0; i < tam; i++) {
             if (this.listas.controladorUsuario.getElemento(i).getRol() == 2) {
                 usuarios = this.listas.controladorUsuario.getElemento(i);
-                agregaFila(usuarios.getCode(), usuarios.getNombre(), usuarios.getCorreo(), usuarios.getPassword());
+                agregaFila(usuarios.getCode(), usuarios.getNombre(), usuarios.getCorreo(), usuarios.getPassword(), usuarios.getGenero());
             }            
         }
         
         this.tabAlumnos.setModel(modeloTabla);
     }
     
-    private void agregaFila(int code, String nombre, String correo, String password){
-        this.modeloTabla.addRow(new Object[]{code, nombre, correo, password});
+    private void agregaFila(int code, String nombre, String correo, String password, String genero){
+        this.modeloTabla.addRow(new Object[]{code, nombre, correo, password, genero});
         
         this.tabAlumnos.setModel(modeloTabla);
     }
@@ -371,7 +374,9 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdfActionPerformed
-        
+        PDF pdf = new PDF();
+        pdf.crearDocUsuarios("Archivos//Listado de Alumnos", listas.controladorUsuario, 2); 
+        mensaje("Se creo el pdf con el listado!");
     }//GEN-LAST:event_pdfActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed

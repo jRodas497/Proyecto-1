@@ -103,7 +103,7 @@ public class ControladorUsuario implements Serializable{
         c1 = c1.replaceAll("\\s","");
         
         if (usuarioExist(code) == null) {
-            usuarios.add(new Usuarios(code, "1234", nombre,c1 + "@gmail.com", genero, 0));
+            usuarios.add(new Usuarios(code, "admin", nombre,c1 + "@gmail.com", genero, 0));
             mensaje("Se registro el usuario (Administrador): " + code + ", " + nombre + ", " + correo + ", " + genero);
             return true;
         }else{

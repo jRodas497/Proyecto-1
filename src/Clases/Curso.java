@@ -5,11 +5,12 @@ import java.io.Serializable;
 public class Curso implements Serializable{
     private String nombreCurso;
     private int codigo;
-    private String profesor;
+    private int profesor;
     private int creditos;   
     private int acumulado;
+    private int alumnos;
 
-    public Curso(String nombreCurso, int codigo, String profesor, int creditos, int acumulado) {
+    public Curso(String nombreCurso, int codigo, int profesor, int creditos, int acumulado, int alumnos) {
         this.nombreCurso = nombreCurso;   
         this.codigo = codigo;             //El código del curso sera único
         this.profesor = profesor;         //Tendra +unicamente un profesor
@@ -22,9 +23,20 @@ public class Curso implements Serializable{
         System.out.print("  Codigo : " + codigo);
         System.out.print("  Profesor: " + profesor);
         System.out.print("  Creditos: " + creditos);
-        System.out.print("  Acumulado: " + acumulado + "\n");
+        System.out.print("  Acumulado: " + acumulado);
+        System.out.print("  Alumnos: " + alumnos + "\n");
     }
 
+    public void cursosDeProf(int profesor){
+        if (this.profesor == profesor) {
+            System.out.print("Nombre: " + nombreCurso);
+            System.out.print("  Codigo : " + codigo);
+            System.out.print("  Creditos: " + creditos);
+            System.out.print("  Acumulado: " + acumulado);
+            System.out.print("  Alumnos: " + alumnos + "\n");
+        }
+    }
+    
     public String getNombreCurso() {
         return nombreCurso;
     }
@@ -41,11 +53,11 @@ public class Curso implements Serializable{
         this.codigo = codigo;
     }
 
-    public String getProfesor() {
+    public int getProfesor() {
         return profesor;
     }
 
-    public void setProfesor(String profesor) {
+    public void setProfesor(int profesor) {
         this.profesor = profesor;
     }
 
@@ -65,10 +77,16 @@ public class Curso implements Serializable{
         this.acumulado = acumulado;
     }
 
-    @Override
-    public String toString() {
-        return "Curso{" + "nombreCurso=" + nombreCurso + ", codigo=" + codigo + ", profesor=" + profesor + ", creditos=" + creditos + ", acumulado=" + acumulado + '}';
+    public int getAlumnos() {
+        return alumnos;
     }
 
-    
+    public void setAlumnos(int alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" + "nombreCurso=" + nombreCurso + ", codigo=" + codigo + ", profesor=" + profesor + ", creditos=" + creditos + ", acumulado=" + acumulado + ", alumnos=" + alumnos + '}';
+    }
 }

@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame {
                 case 0:
                     vistaAdmin();
                 case 1:
-                    
+                    vistaProfesor();
                 case 2:
             
             }
@@ -190,14 +190,26 @@ public class Login extends javax.swing.JFrame {
     
     public void vistaAdmin(){
         VistaAdmin admin = new VistaAdmin();
-        admin.setVisible(true);
+        code.replaceAll("^[0-9]","");
+        int number = Integer.parseInt(code);        
+        admin.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
         admin.recibirListas(listas);
         
-        code.replaceAll("^[0-9]","");
-        int number = Integer.parseInt(code);
-        admin.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
+        admin.setVisible(true);
         
         this.dispose();        
+    }
+    
+    public void vistaProfesor(){
+        VistaProfesor vista = new VistaProfesor();
+        code.replaceAll("^[0-9]", "");
+        int number = Integer.parseInt(code);
+        vista.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
+        vista.recibirListas(listas);
+        
+        vista.setVisible(true);
+                
+        this.dispose();
     }
     
     public static void main(String args[]) {

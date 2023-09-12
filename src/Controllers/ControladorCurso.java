@@ -30,26 +30,32 @@ public class ControladorCurso implements Serializable {
         return size = cursos.size();
     }
     
-    public boolean cursoExist(int codigo){
+    public Curso cursoExist(int codigo){
         int size = cursos.size();
         
         for (int i = 0; i < size; i++) {
-            if(cursos.get(i).getCodigo() == codigo) return true;
+            if(cursos.get(i).getCodigo() == codigo) return cursos.get(i);
         }
-        return false;
+        return null;
     }
     
-    public void addCurso(String nombreCurso, int codigo, String profesor, int creditos, int acumulado){
+    public Curso getElemento(int i){
+        return this.cursos.get(i);
+    }
+    
+    public boolean addCurso(String nombreCurso, int codigo, int profesor, int creditos, int acumulado, int i){
         if (creditos > 0 && creditos <= 10) {
-            if (!cursoExist(codigo)) {
-                cursos.add(new Curso(nombreCurso, codigo, profesor, creditos, 0));
+            if (cursoExist(codigo) == null) {
+                cursos.add(new Curso(nombreCurso, codigo, profesor, creditos, 0, 0));
                 mensaje("Curso añadido: " + nombreCurso + ", " + codigo + ", " + profesor + ", " + creditos);
+                return true;
             }else{
                 mensaje("Ya existe un curso con este código");
             }
         }else{
             mensaje("La cantidad de creditos debe de ser mayor a 0 y menor a 10");
         }
+        return false;
     }
     
     public void mostrarCursos(){
@@ -62,16 +68,24 @@ public class ControladorCurso implements Serializable {
         }
     }
     
-    public void editarCurso(int codigo, String nombre, int creditos, int acumulado){    
+    public void mostrarCursosProf(int prof){
+        int size = size();
+        
+        for (int i = 0; i < size; i++) {
+            cursos.get(i).cursosDeProf(prof);
+        }
+    }
+    
+    public boolean editarCurso(int codigo, String nombre, int creditos){    
         int size = cursos.size();
         for (int i = 0; i < size; i++) {
             if(cursos.get(i).getCodigo() == codigo){
                 if (creditos >= 0 && creditos <= 10) {
-                    if (cursoExist(codigo)) {
+                    if (cursoExist(codigo) != null) {
                         if(nombre != "") cursos.get(i).setNombreCurso(nombre);      
-                        if(acumulado != 0) cursos.get(i).setAcumulado(acumulado);
+                        if(creditos != 0) cursos.get(i).setCreditos(creditos);
                         mensaje("Curso editado con exito!");
-                        i = size;
+                        return true;
                     }else{
                         mensaje("Codigo del curso inexistente");
                     }            
@@ -82,6 +96,20 @@ public class ControladorCurso implements Serializable {
                 mensaje("Codigo del curso inexistente");
             }
         }
+        return false;
+    }
+    
+    public boolean eliminarCurso(int codigo){
+        int size = size();
+        
+        for (int i = 0; i < size; i++) {
+            if (cursos.get(i).getCodigo() == codigo) {
+                cursos.remove(i);
+                mensaje("Curso aliminado con exito!");
+                return true;
+            }
+        }
+        return false;
     }
     
     public void cambiarAcumulado(int codigo, int acumulado){
@@ -89,7 +117,7 @@ public class ControladorCurso implements Serializable {
     
         for (int i = 0; i < size; i++) {
             if(cursos.get(i).getCodigo() == codigo){
-                if (cursoExist(codigo)) {
+                if (cursoExist(codigo) != null) {
 
                     cursos.get(i).setAcumulado(acumulado);
                     
