@@ -22,10 +22,6 @@ public class Login extends javax.swing.JFrame {
         this.listas = listas;
     }
     
-    public void rebirUsuario(Usuarios usuario){
-        this.usuario = usuario;
-    }
-    
     private void mensaje(String msj){
         JOptionPane.showMessageDialog(null, msj);
     }
@@ -153,39 +149,32 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setText(null);        
     }//GEN-LAST:event_btnCleanActionPerformed
 
-    public void registrar(){
-        String incomplete = "";
-        
+    public void camposLlenos(){
         this.code = txtCode.getText();
         this.password = txtPassword.getText();
         
-        if (code.equals("")) incomplete +="\nCódigo.";
-        if (password.equals("")) incomplete +="\nContraseña.";
+        if(code.equals("") || password.equals(""))mensaje("Campos obligatorios por llenar");
+
+    }
+    
+    public void registrar(){        
+        this.code = txtCode.getText();
+        this.password = txtPassword.getText();
         
-        if(!incomplete.equals("")) mensaje("Favor de llenar los campos de " + incomplete);
-        
-        code.replaceAll("^[0-9]","");
         int number = Integer.parseInt(code);
         
-        if (!incomplete.equals("")){
-            mensaje(incomplete);
-        }else if(listas.controladorUsuario.login(number, password) != null){
+        if(listas.controladorUsuario.login(number, password) != null){
             mensaje("Bienvenido " + listas.controladorUsuario.login(number, password).getNombre() + "!");
             int rol = listas.controladorUsuario.usuarioExist(number).getRol();
             
-            switch(rol) {
-                case 0:
-                    vistaAdmin();
-                case 1:
-                    vistaProfesor();
-                case 2:
+            if(rol == 0) vistaAdmin();
+            if(rol == 1) vistaProfesor();
+            if(rol == 2) vistaAlumno();
             
-            }
-        }else if(code == "" || password == ""){
-            mensaje("Favor de llenar los campos");
         }else{
             mensaje("Su usuario y contraseña no coindiden :(");
         }
+        
     }
     
     public void vistaAdmin(){
@@ -197,7 +186,7 @@ public class Login extends javax.swing.JFrame {
         
         admin.setVisible(true);
         
-        this.dispose();        
+        this.dispose();
     }
     
     public void vistaProfesor(){
@@ -209,6 +198,18 @@ public class Login extends javax.swing.JFrame {
         
         vista.setVisible(true);
                 
+        this.dispose();
+    }
+    
+    public void vistaAlumno(){
+        VistaAlumno vista = new VistaAlumno();
+        code.replaceAll("^[0-9]","");
+        int number = Integer.parseInt(code);
+        vista.rebirUsuario(listas.controladorUsuario.usuarioExist(number));
+        vista.recibirListas(listas);        
+        
+        vista.setVisible(true);
+        
         this.dispose();
     }
     

@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaProfesor extends javax.swing.JFrame {
-    private String code;
+    private int code;
     private String nombre;
     private String correo;
     private String password;
+    private String curso = "0";
     
     Listas listas;
     Usuarios usuario;
@@ -33,6 +34,7 @@ public class VistaProfesor extends javax.swing.JFrame {
         //paneles();
         llenarTabla();
         txtProf.setText(String.valueOf("Cursos del Prof. "+usuario.getNombre()));
+        this.code = usuario.getCode();
     }
     
     public void rebirUsuario(Usuarios usuario){
@@ -45,6 +47,7 @@ public class VistaProfesor extends javax.swing.JFrame {
 
     public void llenarTabla(){
         this.modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("ID del curso");
         modeloTabla.addColumn("Nombre del Curso");
         modeloTabla.addColumn("Alumnos Inscritos");
         
@@ -55,13 +58,13 @@ public class VistaProfesor extends javax.swing.JFrame {
         for (int i = 0; i < size; i++) {
             if (this.listas.controladorCurso.getElemento(i).getProfesor() == usuario.getCode()) {
                 cursos = listas.controladorCurso.getElemento(i);
-                agregaFila(cursos.getNombreCurso(),cursos.getAlumnos());
+                agregaFila(cursos.getCodigo(), cursos.getNombreCurso(),cursos.getAlumnos());
             }            
         }
     }
     
-    public void agregaFila(String nombre, int alumnos){
-        this.modeloTabla.addRow(new Object[]{nombre, alumnos});
+    public void agregaFila(int codigo, String nombre, int alumnos){
+        this.modeloTabla.addRow(new Object[]{codigo, nombre, alumnos});
         this.tabCursos.setModel(modeloTabla);
     }
     
@@ -69,28 +72,28 @@ public class VistaProfesor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCerrar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabCursos = new javax.swing.JTable();
         txtProf = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        btnInfo = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setFont(new java.awt.Font("Bookman Old Style", 0, 16)); // NOI18N
-        jButton1.setText("Cerrar Sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrar.setFont(new java.awt.Font("Bookman Old Style", 0, 16)); // NOI18N
+        btnCerrar.setText("Cerrar Sesión");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCerrarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Bookman Old Style", 0, 16)); // NOI18N
-        jButton2.setText("Actualizar Datos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizar.setFont(new java.awt.Font("Bookman Old Style", 0, 16)); // NOI18N
+        btnActualizar.setText("Actualizar Datos");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnActualizarActionPerformed(evt);
             }
         });
 
@@ -103,6 +106,11 @@ public class VistaProfesor extends javax.swing.JFrame {
 
             }
         ));
+        tabCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabCursosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabCursos);
 
         txtProf.setFont(new java.awt.Font("Bookman Old Style", 3, 20)); // NOI18N
@@ -111,8 +119,13 @@ public class VistaProfesor extends javax.swing.JFrame {
         txtProf.setOpaque(false);
         txtProf.setRequestFocusEnabled(false);
 
-        jButton3.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
-        jButton3.setText("Más Información");
+        btnInfo.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        btnInfo.setText("Más Información");
+        btnInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,13 +134,13 @@ public class VistaProfesor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtProf)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
@@ -137,28 +150,52 @@ public class VistaProfesor extends javax.swing.JFrame {
                 .addComponent(txtProf, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        ActualizarProfesor actualizar = new ActualizarProfesor();
+        actualizar.rebirUsuario(usuario);
+        actualizar.recibirListas(listas);
+        actualizar.setVisible(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         Login login = new Login();
         login.recibirListas(listas);
         login.setVisible(true);
+        
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+        System.out.println(curso);
+        System.out.println(code);
+//        MenuProfesor menuP = new MenuProfesor();
+//        menuP.rebirUsuario(listas.controladorUsuario.usuarioExist(code));
+//        
+//        menuP.recibirListas(listas);
+//        
+//        menuP.setVisible(true);
+//        
+//        this.dispose();
+    }//GEN-LAST:event_btnInfoActionPerformed
+
+    private void tabCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCursosMouseClicked
+        int seleccionar = tabCursos.rowAtPoint(evt.getPoint());
+        this.curso = String.valueOf(tabCursos.getValueAt(seleccionar, 0));
+    }//GEN-LAST:event_tabCursosMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -193,9 +230,9 @@ public class VistaProfesor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabCursos;
     private javax.swing.JTextField txtProf;

@@ -116,9 +116,13 @@ public class ControladorUsuario implements Serializable{
         int size = usuarios.size();
         
             for (int i = 0; i < size; i++) {
-                if(usuarios.get(i).getCode() == code) return usuarios.get(i);
+                if(usuarios.get(i).getCode() == code){
+                    if (usuarios.get(i).getPassword().equals(password)) {
+                        return usuarios.get(i);
+                    }                                      
+                }
             }
-        
+        System.out.println("Datos incorrectos");
         return null;
     }
     

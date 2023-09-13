@@ -16,6 +16,7 @@ public class Curso implements Serializable{
         this.profesor = profesor;         //Tendra +unicamente un profesor
         this.creditos = creditos;         //Creditos > 1
         this.acumulado = acumulado;
+        this.alumnos = alumnos;
     }
     
     public void mostrarDatos(){

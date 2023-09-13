@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;      
 
 public class ControladorAlumnoXActividad implements Serializable{
-    private ArrayList <AlumnoXActividad> almxact;
+    private ArrayList <AlumnoXActividad> userxact;
         Listas listas;
 
     public void recibirListas(Listas listas){
@@ -14,7 +14,7 @@ public class ControladorAlumnoXActividad implements Serializable{
     }
     
     public ControladorAlumnoXActividad() {
-        almxact = new ArrayList();
+        userxact = new ArrayList();
     }
     
     public void actividadExist(int codigo){

@@ -61,10 +61,8 @@ public class ControladorCurso implements Serializable {
     public void mostrarCursos(){
         int size = cursos.size();
         
-        if(size > 0){
-            for (int i = 0; i < size; i++) {
-                cursos.get(i).mostrarDatos();
-            }
+        for (int i = 0; i < size; i++) {
+            cursos.get(i).mostrarDatos();
         }
     }
     
@@ -125,6 +123,24 @@ public class ControladorCurso implements Serializable {
                 }else{
                     mensaje("Codigo del curso inexistente");
                 }
+            }
+        }
+    }
+    
+    public void inscribir(int curso){
+        int size = cursos.size();
+        
+        for (int i = 0; i < size; i++) {
+            if(cursos.get(i).getCodigo() == curso){
+                int alumnos = cursos.get(i).getAlumnos();
+                alumnos++;
+                
+                if (cursoExist(curso) != null) {
+                    cursos.get(i).setAlumnos(alumnos);  
+                    mensaje("Alumno inscrito");
+                }else{
+                    mensaje("Codigo del curso inexistente");
+                }            
             }
         }
     }

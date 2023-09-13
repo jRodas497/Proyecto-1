@@ -4,6 +4,7 @@ import Controllers.ControladorActividad;
 import Controllers.ControladorAlumnoXActividad;
 import Controllers.ControladorCurso;
 import Controllers.ControladorUsuario;
+import Controllers.ControladorUsuarioXCurso;
 import java.io.Serializable;
 
 public class Listas implements Serializable{
@@ -11,6 +12,7 @@ public class Listas implements Serializable{
     public ControladorActividad controladorActividad;
     public ControladorUsuario controladorUsuario;
     public ControladorAlumnoXActividad controladorAlmXAct;
+    public ControladorUsuarioXCurso controladorUserXCurso;
     Binario binario;
     
     public Listas(){
@@ -18,6 +20,7 @@ public class Listas implements Serializable{
         this.controladorActividad = new ControladorActividad();
         this.controladorUsuario = new ControladorUsuario();
         this.controladorAlmXAct = new ControladorAlumnoXActividad();
+        this.controladorUserXCurso = new ControladorUsuarioXCurso();
         this.binario = new Binario();
     }
     public Usuarios getUsuarios(int i){
@@ -35,4 +38,6 @@ public class Listas implements Serializable{
     public void obtenerUsuarios(){
         this.controladorUsuario = this.binario.obtenerUsuarios();
     }
+    
+    
 }

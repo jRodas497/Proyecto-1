@@ -29,7 +29,7 @@ public class Alumnos extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
-        //paneles();
+//        paneles();
         llenarTabla();
     }
 

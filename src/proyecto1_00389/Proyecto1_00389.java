@@ -12,6 +12,7 @@ public class Proyecto1_00389 {
         listas.controladorCurso.recibirListas(listas);
         listas.controladorUsuario.recibirListas(listas);
         listas.controladorAlmXAct.recibirListas(listas);
+        listas.controladorUserXCurso.recibirListas(listas);        
         
         
         listas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
@@ -54,11 +55,23 @@ public class Proyecto1_00389 {
         listas.controladorActividad.addActividad(8488, "HT #4", "ikuj1212jkhkdsf", 20, 123);
         listas.controladorActividad.addActividad(1520, "HT #5", "sdhniunvriuvi", 10, 770);
         
-        listas.controladorCurso.mostrarCursosProf(15151515);
+        listas.controladorUserXCurso.asignarAlumno(10203040, 770);
+        listas.controladorUserXCurso.asignarAlumno(10203040, 123);
+        listas.controladorUserXCurso.asignarAlumno(10203040, 420);
+        
+        listas.controladorUserXCurso.asignarAlumno(65412398, 770);
+        listas.controladorUserXCurso.asignarAlumno(65412398, 123);
+        
+        listas.controladorUserXCurso.asignarAlumno(78945612, 770);
+        listas.controladorUserXCurso.asignarAlumno(36985214, 770);
+        listas.controladorUserXCurso.asignarAlumno(13579246, 770);
 
+        listas.controladorUserXCurso.mostrarDatos();
+        listas.controladorCurso.mostrarCursos();
+        
         Login login = new Login();
         login.recibirListas(listas);
-        login.setVisible(true);   
+        login.setVisible(true);
         
 //        listas.controladorUsuario.cantidadGenero();
         
@@ -71,10 +84,5 @@ public class Proyecto1_00389 {
 //        listas.controladorUsuario.porcentajeAlumnosF();
 //        listas.controladorUsuario.porcentajeProfesoresM();
 //        listas.controladorUsuario.porcentajeProfesoresF();
-        
-
-//        VistaAdmin admin = new VistaAdmin();
-//        admin.recibirListas(datosListas);
-//        admin.setVisible(true);   
     }    
 }

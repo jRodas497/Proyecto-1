@@ -1,17 +1,36 @@
 package Grafico;
 
+import Archivos.Binario;
+import Archivos.Texto;
 import Clases.Listas;
+import Clases.Usuarios;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-public class Menu extends javax.swing.JFrame {
+public class MenuProfesor extends javax.swing.JFrame {
+    private int curso;
+    
     Listas listas;
-
-    public Menu() {
+    DefaultTableModel modeloTabla;
+    Binario binario;
+    Texto texto;
+    Usuarios usuario;
+    
+    public MenuProfesor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void recibirListas(Listas listas){
         this.listas = listas;
+    }
+    
+    public void rebirUsuario(Usuarios usuario){
+        this.usuario = usuario;
+    }
+    
+    public void codigoCurso(int curso){
+        this.curso = curso;
     }
     
     private void mensaje(String msj){
@@ -68,20 +87,21 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuProfesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new MenuProfesor().setVisible(true);
             }
         });
     }
