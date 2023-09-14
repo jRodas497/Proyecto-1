@@ -51,6 +51,7 @@ public class ControladorUsuarioXCurso implements Serializable {
                 }
                 
                 userxcurso.add(new UsuarioXCurso(usuario, curso));
+                listas.controladorAlmXAct.añadirAlmActividades(usuario, curso);
                 listas.controladorCurso.inscribir(curso);
                 mensaje("Se asigno al alumno " + u.getNombre() + " al curso!");
                 
@@ -73,6 +74,22 @@ public class ControladorUsuarioXCurso implements Serializable {
             System.out.print("  Código: " + listas.controladorUsuario.usuarioExist(userxcurso.get(i).getUsuario()).getCode());
             System.out.print("  Alumno: " + listas.controladorUsuario.usuarioExist(userxcurso.get(i).getUsuario()).getNombre() + "\n");
         }
+    }
+    
+    public boolean desasignar(int usuario, int curso){
+        int size = size();
+        
+        for (int i = 0; i < size; i++) {
+            if (userxcurso.get(i).getUsuario() == usuario && userxcurso.get(i).getCurso() == curso) {
+                userxcurso.remove(i);
+                
+                //listas.controladorAlmXAct.desasignarAlmActividades(curso, usuario);
+                listas.controladorCurso.desasignar(curso);                
+                mensaje("Alumno eliminado del curso " + listas.controladorCurso.cursoExist(curso).getNombreCurso());
+                return true;
+            }
+        }
+        return false;
     }
     
     public UsuarioXCurso getElemento(int i){

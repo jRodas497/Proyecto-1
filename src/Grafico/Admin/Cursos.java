@@ -5,6 +5,7 @@ import Archivos.PDF;
 import Archivos.Texto;
 import Clases.Curso;
 import Clases.Listas;
+import Clases.Usuarios;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,7 @@ public class Cursos extends javax.swing.JFrame {
     DefaultTableModel modeloTabla;
     Binario binario;
     Texto texto;
+    Usuarios usuario;
     
     public Cursos() {
         initComponents();
@@ -32,6 +34,10 @@ public class Cursos extends javax.swing.JFrame {
         this.listas = listas;
         //paneles();
         llenarTabla();
+    }
+    
+    public void rebirUsuario(Usuarios usuario){
+        this.usuario = usuario;
     }
     
     private void mensaje(String msj){
@@ -287,6 +293,7 @@ public class Cursos extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         VistaAdmin admin = new VistaAdmin();
+        admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
         admin.setVisible(true);
         this.dispose();

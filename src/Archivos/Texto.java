@@ -1,7 +1,9 @@
 package Archivos;
 
+import Controllers.ControladorActividad;
 import Controllers.ControladorCurso;
 import Controllers.ControladorUsuario;
+import Controllers.ControladorUsuarioXCurso;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import javax.swing.JFileChooser;
@@ -22,6 +24,8 @@ public class Texto {
         }
         return "";
     }
+    
+    /************************************************Usuarios************************************************/
     
     public void cargarUsuarios(String path, ControladorUsuario usuario){
         try {
@@ -66,6 +70,9 @@ public class Texto {
         }
     }
     
+    /********************************************************************************************************/
+    /*************************************************Cursos*************************************************/
+    
     public void cargarCursos(String path, ControladorCurso cursos){
         try {
             FileReader fr = new FileReader(path);
@@ -106,6 +113,84 @@ public class Texto {
         }
     }
     
+    /********************************************************************************************************/
+    /**********************************************Actividades***********************************************/
+    
+    public void cargarActividades(String path, ControladorActividad actividad, int curso){
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            
+            String linea = "";
+            String contenido = "";
+            while ((linea = br.readLine()) != null) {
+                contenido += linea + "\n";
+            }
+            br.close();
+            fr.close();
+            
+            System.out.println(contenido);
+            cargarDatosActividades(contenido, actividad, curso);
+        } catch (Exception e) {
+        
+        }
+    }   
+    
+    private void cargarDatosActividades(String contenido, ControladorActividad actividad, int curso){
+        String [] listado = contenido.split("\n");
+        int size = actividad.size();
+        
+        for (int i = 0; i < size; i++) {
+            String [] valores = listado[i].split(",");
+            
+            valores[0].replaceAll("^[0-9]", "");
+            int codigo = Integer.parseInt(valores[0]);
+            
+            valores[3].replaceAll("^[0-9]", "");
+            int punteo = Integer.parseInt(valores[3]);
+            
+            actividad.addActividad(codigo, valores[1], valores[2], punteo, curso);
+        }
+    }
+    
+    /********************************************************************************************************/
+    /********************************************Alumnos a Curso*********************************************/
+    
+    public void cargarAlumnosCurso(String path, ControladorUsuarioXCurso userxcurso, int curso){
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            
+            String linea = "";
+            String contenido = "";
+            while ((linea = br.readLine()) != null) {
+                contenido += linea + "\n";
+            }
+            br.close();
+            fr.close();
+            
+            System.out.println(contenido);
+            cargarDatosAlumnosCurso(contenido, userxcurso, curso);
+        } catch (Exception e) {
+        
+        }
+    }   
+    
+    private void cargarDatosAlumnosCurso(String contenido, ControladorUsuarioXCurso userxcurso, int curso){
+        String [] listado = contenido.split("\n");
+        int size = userxcurso.size();
+        
+        for (int i = 0; i < size; i++) {
+            String [] valores = listado[i].split(",");
+            
+            valores[0].replaceAll("^[0-9]", "");
+            int usuario = Integer.parseInt(valores[0]);
+            
+            userxcurso.asignarAlumno(usuario, curso);
+        }
+    }
+        
+    /********************************************************************************************************/
     private int convertir(String val){
             val.replaceAll("\\n","");
             val.replaceAll("^[0-9]","");

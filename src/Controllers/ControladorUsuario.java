@@ -133,7 +133,7 @@ public class ControladorUsuario implements Serializable{
                 if(correo != "") usuarios.get(i).setCorreo(correo);
                 if(nombre != "") usuarios.get(i).setNombre(nombre);
                 if(password != "") usuarios.get(i).setPassword(password);
-                mensaje("Usuarios editado con exito!");
+                mensaje("Usuario editado con exito!");
                 return true;
             }
         }
@@ -145,7 +145,9 @@ public class ControladorUsuario implements Serializable{
         
         for (int i = 0; i < size; i++) {
             if (usuarios.get(i).getCode() == code) {
-                usuarios.remove(i);
+                usuarios.get(i).setCorreo("*--*---*--*");
+                usuarios.get(i).setNombre("*--*---*--*");
+                usuarios.get(i).setPassword("*--*---*--*");
                 
                 mensaje("Usuario aliminado con exito!");
                 return true;

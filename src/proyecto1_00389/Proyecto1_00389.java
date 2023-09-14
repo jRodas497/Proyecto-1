@@ -1,7 +1,6 @@
 package proyecto1_00389;
 import Grafico.Login;
 import Clases.Listas;
-import Grafico.Admin.VistaAdmin;
 
 public class Proyecto1_00389 {
 
@@ -14,9 +13,7 @@ public class Proyecto1_00389 {
         listas.controladorAlmXAct.recibirListas(listas);
         listas.controladorUserXCurso.recibirListas(listas);        
         
-        
         listas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
-
         listas.controladorUsuario.addAlumno(15954845, "", "María", "", "F", 2);
         listas.controladorUsuario.addAlumno(98768032, "", "Carlos", "", "M", 2);
         listas.controladorUsuario.addAlumno(24681357, "", "Laura", "", "F", 2);
@@ -49,12 +46,16 @@ public class Proyecto1_00389 {
         listas.controladorCurso.addCurso("Investigación", 335, 15151515, 3,0,0);
         listas.controladorCurso.addCurso("LDS", 240, 98127636,6,0,0);
 
-        listas.controladorActividad.addActividad(1121, "HT #1", "ASDASDASDkjkljlkjkl", 15, 770);
-        listas.controladorActividad.addActividad(11421, "HT #2", "asdasdplplpl", 14, 770);
-        listas.controladorActividad.addActividad(18, "HT #3", "yhbyhbsadkfgf", 20, 123);
-        listas.controladorActividad.addActividad(8488, "HT #4", "ikuj1212jkhkdsf", 20, 123);
-        listas.controladorActividad.addActividad(1520, "HT #5", "sdhniunvriuvi", 10, 770);
-        
+        listas.controladorActividad.addActividad(20199, "HT #1", "Problema 10", 5, 770);
+        listas.controladorActividad.addActividad(20200, "HT #2", "Problema 23", 5, 770);
+        listas.controladorActividad.addActividad(20201, "EP1", "Parcial 1", 17, 770);
+        listas.controladorActividad.addActividad(20202, "EP2", "Parcial 2", 17, 770);
+        listas.controladorActividad.addActividad(20203, "EP3", "Parcial 3", 16, 770);
+        listas.controladorActividad.addActividad(20204, "EF", "Examen Final", 25, 770);
+        listas.controladorActividad.addActividad(1520, "HT #5", "Problema 6", 10, 420);
+        listas.controladorActividad.addActividad(18, "HT #3", "Problema 11 - 22", 20, 123);
+        listas.controladorActividad.addActividad(8488, "HT #4", "Examen P1", 20, 123);
+                
         listas.controladorUserXCurso.asignarAlumno(10203040, 770);
         listas.controladorUserXCurso.asignarAlumno(10203040, 123);
         listas.controladorUserXCurso.asignarAlumno(10203040, 420);
@@ -65,9 +66,10 @@ public class Proyecto1_00389 {
         listas.controladorUserXCurso.asignarAlumno(78945612, 770);
         listas.controladorUserXCurso.asignarAlumno(36985214, 770);
         listas.controladorUserXCurso.asignarAlumno(13579246, 770);
-
-        listas.controladorUserXCurso.mostrarDatos();
-        listas.controladorCurso.mostrarCursos();
+        
+        listas.controladorAlmXAct.mostrarDatos();
+        
+        System.out.println(listas.controladorAlmXAct.size());
         
         Login login = new Login();
         login.recibirListas(listas);

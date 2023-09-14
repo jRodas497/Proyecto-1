@@ -16,6 +16,7 @@ public class Profesores extends javax.swing.JFrame {
     Listas listas;
     DefaultTableModel modeloTabla;
     Texto texto;
+    Usuarios usuario;
     
     public Profesores() {
         initComponents();
@@ -26,6 +27,10 @@ public class Profesores extends javax.swing.JFrame {
     public void recibirListas(Listas listas){
         this.listas = listas;
         llenarTabla();
+    }
+    
+    public void rebirUsuario(Usuarios usuario){
+        this.usuario = usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -320,6 +325,7 @@ public class Profesores extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         VistaAdmin admin = new VistaAdmin();
+        admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
         admin.setVisible(true);
         this.dispose();

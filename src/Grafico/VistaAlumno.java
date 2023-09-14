@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaAlumno extends javax.swing.JFrame {
+    private String curso = "0";
+    
     Listas listas;
     DefaultTableModel modeloTabla;
 
@@ -69,7 +71,6 @@ public class VistaAlumno extends javax.swing.JFrame {
         btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(null);
 
         txtAlumno.setFont(new java.awt.Font("Bookman Old Style", 3, 20)); // NOI18N
         txtAlumno.setBorder(null);
@@ -86,6 +87,12 @@ public class VistaAlumno extends javax.swing.JFrame {
 
             }
         ));
+        tabCursos.setRowHeight(24);
+        tabCursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabCursosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabCursos);
 
         btnInfo.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
@@ -153,7 +160,23 @@ public class VistaAlumno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+        System.out.println(curso);
+        
+        if (curso != "0") {
+            MenuAlumno a = new MenuAlumno();
+            a.rebirUsuario(usuario);
 
+            int number = Integer.parseInt(curso);
+
+            a.codigoCurso(number);
+            a.recibirListas(listas);
+
+            a.setVisible(true);
+
+            this.dispose();
+        }else{
+            mensaje("Seleccione antes un curso");
+        }    
     }//GEN-LAST:event_btnInfoActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -172,6 +195,11 @@ public class VistaAlumno extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void tabCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCursosMouseClicked
+        int seleccionar = tabCursos.rowAtPoint(evt.getPoint());
+        this.curso = String.valueOf(tabCursos.getValueAt(seleccionar, 0));
+    }//GEN-LAST:event_tabCursosMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

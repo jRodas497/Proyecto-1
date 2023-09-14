@@ -17,13 +17,22 @@ public class ControladorActividad implements Serializable{
         this.listas = listas;
     }
 
-    public boolean actividadExist(int codigo){
+    public Actividad actividadExist(int codigo){
         int size = actividades.size();
         
         for (int i = 0; i < size; i++) {
-            if (actividades.get(i).getCodigo() == codigo) return true;
+            if (actividades.get(i).getCodigo() == codigo) return actividades.get(i);
         }
-        return false;
+        return null;
+    }
+    
+    public int size(){
+        int size = actividades.size();
+        return size;
+    }
+    
+    public Actividad getElement(int i){
+        return this.actividades.get(i);
     }
     
     public void mostrarActividades(){
@@ -42,17 +51,21 @@ public class ControladorActividad implements Serializable{
         }        
     }
     
-    public void addActividad(int codigo, String nombre, String descripcion, int punteo, int curso){
-        int acumuladoTotal = listas.controladorCurso.acumulado(codigo);
-        
-        if (punteo > 0 || punteo < 101) {
-            if (punteo100(punteo, curso)) {
-                actividades.add(new Actividad(codigo, nombre, descripcion, punteo, curso));
-                mensaje("Se añadio la actividad: " + nombre);
-            }            
+    public boolean addActividad(int codigo, String nombre, String descripcion, int punteo, int curso){
+        if (actividadExist(codigo) == null) {
+            if (punteo > 0 || punteo < 101) {
+                if (punteo100(punteo, curso)) {
+                    actividades.add(new Actividad(codigo, nombre, descripcion, punteo, curso));
+                    mensaje("Se añadio la actividad: " + nombre);
+                    return true;
+                }            
+            }else{
+                mensaje("Punteo no valido");
+            }
         }else{
-            mensaje("Punteo no valido");
+            mensaje("La actividad ya existe");
         }
+        return false;
     }
     
     public boolean punteo100(int pts, int curso){

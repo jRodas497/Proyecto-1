@@ -19,6 +19,7 @@ public class Alumnos extends javax.swing.JFrame {
     DefaultTableModel modeloTabla;
     Binario binario;
     Texto texto;
+    Usuarios usuario;
     
     public Alumnos() {
         initComponents();
@@ -31,6 +32,10 @@ public class Alumnos extends javax.swing.JFrame {
         this.listas = listas;
 //        paneles();
         llenarTabla();
+    }
+    
+    public void rebirUsuario(Usuarios usuario){
+        this.usuario = usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -364,9 +369,9 @@ public class Alumnos extends javax.swing.JFrame {
             txtcorreo.setText("");
             txtpassword.setText("");
             llenarTabla();
-        }else{
-            mensaje("Opps! Aún no encuentro una solución a ese error XD");
-        }
+            }else{
+                mensaje("Opps! Aún no encuentro una solución a ese error XD");
+            }
         } else {
             // Acción a realizar si el usuario selecciona "No" o cierra el cuadro de diálogo
             JOptionPane.showMessageDialog(null, "El usuario no ha sido eliminado :)");
@@ -381,6 +386,7 @@ public class Alumnos extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         VistaAdmin admin = new VistaAdmin();
+        admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
         admin.setVisible(true);
         this.dispose();

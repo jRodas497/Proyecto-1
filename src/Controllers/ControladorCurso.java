@@ -102,7 +102,9 @@ public class ControladorCurso implements Serializable {
         
         for (int i = 0; i < size; i++) {
             if (cursos.get(i).getCodigo() == codigo) {
-                cursos.remove(i);
+                cursos.get(i).setNombreCurso("*--*---*--*");
+                cursos.get(i).setProfesor(0);
+                cursos.get(i).setCreditos(0);
                 mensaje("Curso aliminado con exito!");
                 return true;
             }
@@ -141,6 +143,23 @@ public class ControladorCurso implements Serializable {
                 }else{
                     mensaje("Codigo del curso inexistente");
                 }            
+            }
+        }
+    }
+    
+    public void desasignar(int curso){
+        int size = size();
+        
+        for (int i = 0; i < size; i++) {
+            if (cursos.get(i).getCodigo() == curso) {
+                int alumnos = cursos.get(i).getAlumnos();
+                alumnos--;
+                
+                if (true) {
+                    cursos.get(i).setAlumnos(alumnos);
+                }else{
+                    mensaje("Codigo del curso inexistente");
+                }
             }
         }
     }
