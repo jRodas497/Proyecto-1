@@ -187,6 +187,7 @@ public class ActualizarAdmin extends javax.swing.JFrame {
         int number = Integer.parseInt(code);
         if (listas.controladorUsuario.editarUsuario(number, nombre, correo, password)) {
             mensaje("Datos modificados con éxito");
+            almacenar();
             vistaNotas();
         }else{
             mensaje("Error en la acutalización de datos :(");
@@ -194,6 +195,13 @@ public class ActualizarAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarUsuariosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
     public void vistaNotas(){
         Notas n = new Notas();
         n.rebirUsuario(usuario);

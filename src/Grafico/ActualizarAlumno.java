@@ -182,6 +182,7 @@ public class ActualizarAlumno extends javax.swing.JFrame {
         int number = Integer.parseInt(code);
         if (listas.controladorUsuario.editarUsuario(number, nombre, correo, password)) {
             mensaje("Datos modificados con éxito");
+            almacenar();
             vistaAlumno();
         }else{
             mensaje("Error en la acutalización de datos :(");
@@ -189,6 +190,13 @@ public class ActualizarAlumno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarArraysBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

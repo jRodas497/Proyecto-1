@@ -181,6 +181,13 @@ public class AgregarAlumno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarUsuariosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -196,6 +203,7 @@ public class AgregarAlumno extends javax.swing.JFrame {
         if (genero) {
             if(listas.controladorUsuario.addAlumno(number, "1234", nombre, "", "M", 2)){
             mensaje("Se agrego al usuario " + nombre + " correctamente!");
+            almacenar();
             dispose();
             }else{
                 mensaje("No se pudo agregar el usuario");

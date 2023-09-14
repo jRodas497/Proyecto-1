@@ -26,6 +26,7 @@ public class Profesores extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
+        recuperar();
         llenarTabla();
     }
     
@@ -54,7 +55,6 @@ public class Profesores extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtcode = new javax.swing.JTextField();
-        panelGraficaProfesores = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,17 +157,6 @@ public class Profesores extends javax.swing.JFrame {
         txtcode.setOpaque(false);
         txtcode.setRequestFocusEnabled(false);
 
-        javax.swing.GroupLayout panelGraficaProfesoresLayout = new javax.swing.GroupLayout(panelGraficaProfesores);
-        panelGraficaProfesores.setLayout(panelGraficaProfesoresLayout);
-        panelGraficaProfesoresLayout.setHorizontalGroup(
-            panelGraficaProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
-        );
-        panelGraficaProfesoresLayout.setVerticalGroup(
-            panelGraficaProfesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 305, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +183,7 @@ public class Profesores extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -209,15 +198,12 @@ public class Profesores extends javax.swing.JFrame {
                                                 .addComponent(txtnombre)
                                                 .addComponent(txtcorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                                                 .addComponent(txtcode))
-                                            .addComponent(txtpassword)))
+                                            .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
                                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(panelGraficaProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(22, 22, 22))))))
         );
         layout.setVerticalGroup(
@@ -226,7 +212,7 @@ public class Profesores extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCargaMasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,12 +240,9 @@ public class Profesores extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelGraficaProfesores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -302,15 +285,6 @@ public class Profesores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaActionPerformed
-        //GUARDAR DATOS
-        boolean ok = this.listas.almacenarUsuariosBin();
-        if (ok) System.out.println("Se guardaron los datos");
-        else System.out.println("Al parecer, ocurrio un problema :(");
-        
-        //RECUPERAR DATOS 
-//        listas.obtenerUsuarios();
-//        llenarTabla();
-
         String parh = texto.Buscar();
         texto.cargarUsuarios(parh, listas.controladorUsuario);
         llenarTabla();
@@ -324,6 +298,7 @@ public class Profesores extends javax.swing.JFrame {
     }//GEN-LAST:event_pdfActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        almacenar();
         VistaAdmin admin = new VistaAdmin();
         admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
@@ -331,6 +306,19 @@ public class Profesores extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarUsuariosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
+    public void recuperar(){
+        //RECUPERAR DATOS
+        listas.obtenerUsuarios();
+        llenarTabla();
+    }
+    
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpasswordActionPerformed
@@ -434,7 +422,6 @@ public class Profesores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelGraficaProfesores;
     private javax.swing.JButton pdf;
     private javax.swing.JTable tabProfesores;
     private javax.swing.JTextField txtcode;

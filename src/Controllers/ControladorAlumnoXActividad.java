@@ -2,21 +2,22 @@ package Controllers;
 
 import Clases.Actividad;
 import Clases.AlumnoXActividad;
+import Clases.Arrays;
 import Clases.Curso;
 import Clases.Listas;
 import java.io.Serializable;
 import java.util.ArrayList;      
 
 public class ControladorAlumnoXActividad implements Serializable{
-    private ArrayList <AlumnoXActividad> userxact;
     Listas listas;
-
+    ArrayList <AlumnoXActividad> userxact;
+    
     public ControladorAlumnoXActividad() {
-        userxact = new ArrayList<>();
     }    
 
     public void recibirListas(Listas listas){
         this.listas = listas;
+        userxact = listas.arrays.userxact;
     }
     
     public AlumnoXActividad getElement(int i){

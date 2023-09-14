@@ -7,14 +7,9 @@ import java.util.ArrayList;
 
 public class ControladorCurso implements Serializable {
     private ArrayList <Curso> cursos;
-    Listas listas;
     
     public ControladorCurso() {
         cursos = new ArrayList<>();
-    }
-    
-    public void recibirListas(Listas listas){
-        this.listas = listas;
     }
     
     public int acumulado(int codigo){

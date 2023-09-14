@@ -33,6 +33,7 @@ public class Cursos extends javax.swing.JFrame {
     public void recibirListas(Listas listas){
         this.listas = listas;
         //paneles();
+        recuperar();
         llenarTabla();
     }
     
@@ -64,7 +65,6 @@ public class Cursos extends javax.swing.JFrame {
         txtcode = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        panelGraficaAlumnos = new javax.swing.JPanel();
         txtcreds = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -163,17 +163,6 @@ public class Cursos extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelGraficaAlumnosLayout = new javax.swing.GroupLayout(panelGraficaAlumnos);
-        panelGraficaAlumnos.setLayout(panelGraficaAlumnosLayout);
-        panelGraficaAlumnosLayout.setHorizontalGroup(
-            panelGraficaAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
-        );
-        panelGraficaAlumnosLayout.setVerticalGroup(
-            panelGraficaAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 304, Short.MAX_VALUE)
-        );
-
         txtcreds.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,9 +200,8 @@ public class Cursos extends javax.swing.JFrame {
                                     .addComponent(txtcreds)
                                     .addComponent(txtprof, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(panelGraficaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                                    .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,26 +240,15 @@ public class Cursos extends javax.swing.JFrame {
                                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelGraficaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaActionPerformed
-//        //GUARDAR DATOS
-//        boolean ok = this.listas.almacenarUsuariosBin();
-//        if (ok) System.out.println("Se guardaron los datos");
-//        else System.out.println("Al parecer, ocurrio un problema :(");
-//
-//        //RECUPERAR DATOS
-//        //        listas.obtenerUsuarios();
-//        //        llenarTabla();
-//
         String parh = texto.Buscar();
         texto.cargarCursos(parh, listas.controladorCurso);
         llenarTabla();
@@ -292,6 +269,7 @@ public class Cursos extends javax.swing.JFrame {
     }//GEN-LAST:event_pdfActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        almacenar();
         VistaAdmin admin = new VistaAdmin();
         admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
@@ -299,6 +277,19 @@ public class Cursos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarCursosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
+    public void recuperar(){
+        //RECUPERAR DATOS 
+        listas.obtenerCursos();
+        llenarTabla();
+    }
+    
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         this.codigo = txtcode.getText();
         this.nombreCurso = txtnombre.getText();
@@ -422,7 +413,6 @@ public class Cursos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelGraficaAlumnos;
     private javax.swing.JButton pdf;
     private javax.swing.JTable tabCursos;
     private javax.swing.JTextField txtcode;

@@ -24,6 +24,7 @@ public class ListaNotas extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
+        recuperar();
         llenarTabla();
         txtCurso.setText(String.valueOf("Detalles del curso " + listas.controladorCurso.cursoExist(curso).getNombreCurso()));
         this.code = usuario.getCode();
@@ -173,13 +174,13 @@ public class ListaNotas extends javax.swing.JFrame {
                     .addComponent(btnMenuNotas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNota, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
         );
 
@@ -191,6 +192,7 @@ public class ListaNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCursoActionPerformed
 
     private void btnMenuNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuNotasActionPerformed
+        almacenar();
         Notas n = new Notas();
         n.rebirUsuario(usuario);
         n.recibirListas(listas);
@@ -211,6 +213,19 @@ public class ListaNotas extends javax.swing.JFrame {
         txtNota.setText(String.valueOf(tabNotas.getValueAt(seleccionar, 4)));
     }//GEN-LAST:event_tabNotasMouseClicked
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarArraysBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
+    public void recuperar(){
+        //RECUPERAR DATOS 
+        listas.obtenerArrays();
+        llenarTabla();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         nota = txtNota.getText();
         nota.replaceAll("^[0-9]", "");

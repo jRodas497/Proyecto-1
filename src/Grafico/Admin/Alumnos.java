@@ -30,7 +30,7 @@ public class Alumnos extends javax.swing.JFrame {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
-//        paneles();
+        //recuperar();
         llenarTabla();
     }
     
@@ -60,7 +60,6 @@ public class Alumnos extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtcode = new javax.swing.JTextField();
-        panelGraficaAlumnos = new javax.swing.JPanel();
 
         jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         jLabel2.setText("Código");
@@ -169,17 +168,6 @@ public class Alumnos extends javax.swing.JFrame {
         txtcode.setOpaque(false);
         txtcode.setRequestFocusEnabled(false);
 
-        javax.swing.GroupLayout panelGraficaAlumnosLayout = new javax.swing.GroupLayout(panelGraficaAlumnos);
-        panelGraficaAlumnos.setLayout(panelGraficaAlumnosLayout);
-        panelGraficaAlumnosLayout.setHorizontalGroup(
-            panelGraficaAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelGraficaAlumnosLayout.setVerticalGroup(
-            panelGraficaAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,7 +182,7 @@ public class Alumnos extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnAddAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,11 +210,8 @@ public class Alumnos extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panelGraficaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(24, 24, 24))))
+                                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +219,7 @@ public class Alumnos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCargaMasiva, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,11 +247,9 @@ public class Alumnos extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelGraficaAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -299,13 +282,6 @@ public class Alumnos extends javax.swing.JFrame {
         this.tabAlumnos.setModel(modeloTabla);
     }
     
-    private void paneles(){
-        this.panelGrafica = new PanelGraficaPie();
-        this.panelGrafica.setVisible(true);
-        this.panelGrafica.setSize(326, 305);
-        this.panelGrafica.recibirListas(listas);
-    }
-    
     private void mensaje(String msj){
         JOptionPane.showMessageDialog(null, msj);
     }
@@ -317,21 +293,25 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddAlumnoActionPerformed
 
     private void btnCargaMasivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaMasivaActionPerformed
-        //GUARDAR DATOS
-        boolean ok = this.listas.almacenarUsuariosBin();
-        if (ok) System.out.println("Se guardaron los datos");
-        else System.out.println("Al parecer, ocurrio un problema :(");
-        
-        //RECUPERAR DATOS 
-//        listas.obtenerUsuarios();
-//        llenarTabla();
-
-        String parh = texto.Buscar();
-        texto.cargarUsuarios(parh, listas.controladorUsuario);
+        String path = texto.Buscar();
+        texto.cargarUsuarios(path, listas.controladorUsuario);
         llenarTabla();
         mensaje("Carga masiva realizada");
     }//GEN-LAST:event_btnCargaMasivaActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarUsuariosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
+    public void recuperar(){
+        //RECUPERAR DATOS 
+        listas.obtenerUsuarios();
+        llenarTabla();
+    }
+    
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         this.code = txtcode.getText();
         this.nombre = txtnombre.getText();
@@ -385,6 +365,7 @@ public class Alumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_pdfActionPerformed
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        almacenar();
         VistaAdmin admin = new VistaAdmin();
         admin.rebirUsuario(usuario);
         admin.recibirListas(listas);
@@ -449,7 +430,6 @@ public class Alumnos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panelGraficaAlumnos;
     private javax.swing.JButton pdf;
     private javax.swing.JTable tabAlumnos;
     private javax.swing.JTextField txtcode;

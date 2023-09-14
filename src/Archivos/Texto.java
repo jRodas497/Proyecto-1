@@ -1,6 +1,9 @@
 package Archivos;
 
+import Clases.Actividad;
+import Clases.Arrays;
 import Controllers.ControladorActividad;
+import Controllers.ControladorAlumnoXActividad;
 import Controllers.ControladorCurso;
 import Controllers.ControladorUsuario;
 import Controllers.ControladorUsuarioXCurso;
@@ -49,7 +52,7 @@ public class Texto {
     
     private void cargarDatosUsuario(String contenido, ControladorUsuario usuario){
         String [] listado = contenido.split("\n");
-        int size = usuario.size();
+        int size = listado.length;
         int rol;
         
         String correo;
@@ -116,7 +119,7 @@ public class Texto {
     /********************************************************************************************************/
     /**********************************************Actividades***********************************************/
     
-    public void cargarActividades(String path, ControladorActividad actividad, int curso){
+    public void cargarActividades(String path, ControladorActividad actividades, int curso){
         try {
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
@@ -130,15 +133,15 @@ public class Texto {
             fr.close();
             
             System.out.println(contenido);
-            cargarDatosActividades(contenido, actividad, curso);
+            cargarDatosActividades(contenido, actividades, curso);
         } catch (Exception e) {
         
         }
     }   
     
-    private void cargarDatosActividades(String contenido, ControladorActividad actividad, int curso){
+    private void cargarDatosActividades(String contenido, ControladorActividad actividades, int curso){
         String [] listado = contenido.split("\n");
-        int size = actividad.size();
+        int size = listado.length;
         
         for (int i = 0; i < size; i++) {
             String [] valores = listado[i].split(",");
@@ -149,7 +152,7 @@ public class Texto {
             valores[3].replaceAll("^[0-9]", "");
             int punteo = Integer.parseInt(valores[3]);
             
-            actividad.addActividad(codigo, valores[1], valores[2], punteo, curso);
+            actividades.addActividad(codigo, valores[1], valores[2], punteo, curso);
         }
     }
     
@@ -178,7 +181,7 @@ public class Texto {
     
     private void cargarDatosAlumnosCurso(String contenido, ControladorUsuarioXCurso userxcurso, int curso){
         String [] listado = contenido.split("\n");
-        int size = userxcurso.size();
+        int size = listado.length;
         
         for (int i = 0; i < size; i++) {
             String [] valores = listado[i].split(",");
@@ -189,7 +192,44 @@ public class Texto {
             userxcurso.asignarAlumno(usuario, curso);
         }
     }
+    
+    /********************************************************************************************************/
+    /******************************************Alumnos a Actividad*******************************************/
+    
+    public void cargarAlumnoActividad(String path, ControladorAlumnoXActividad almxact, int actividad){
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            
+            String linea = "";
+            String contenido = "";
+            while ((linea = br.readLine()) != null) {
+                contenido += linea + "\n";
+            }
+            br.close();
+            fr.close();
+            
+            System.out.println(contenido);
+            cargarDatosAlumnoActividad(contenido, almxact, actividad);
+        } catch (Exception e) {
         
+        }
+    }
+    
+    private void cargarDatosAlumnoActividad(String contenido, ControladorAlumnoXActividad almxact, int curso){
+        String [] listado = contenido.split("\n");
+        int size = listado.length;
+        
+        for (int i = 0; i < size; i++) {
+            String [] valores = listado[i].split(",");
+            
+            valores[0].replaceAll("^[0-9]", "");
+            int usuario = Integer.parseInt(valores[0]);
+            
+            almxact.añadirAlmActividades(usuario, curso);
+        }
+    }
+    
     /********************************************************************************************************/
     private int convertir(String val){
             val.replaceAll("\\n","");

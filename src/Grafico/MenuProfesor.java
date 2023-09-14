@@ -473,6 +473,7 @@ public class MenuProfesor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesasignarActionPerformed
 
     private void btnMenuProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuProfesorActionPerformed
+        almacenar();
         VistaProfesor vista = new VistaProfesor();
         vista.rebirUsuario(usuario);
         vista.recibirListas(listas);
@@ -482,6 +483,13 @@ public class MenuProfesor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnMenuProfesorActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarArraysBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String incomplete = "";
         this.codigoC = txtCodigo.getText();

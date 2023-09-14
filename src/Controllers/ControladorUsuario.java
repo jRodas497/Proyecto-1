@@ -7,15 +7,10 @@ import java.util.ArrayList;
 
 public class ControladorUsuario implements Serializable{
     private ArrayList <Usuarios> usuarios;
-    Listas listas;
 
     public ControladorUsuario() {
         usuarios = new ArrayList<>();
-    }
-    
-    public void recibirListas(Listas listas){
-        this.listas = listas;
-    }
+    }    
     
     public Usuarios usuarioExist(int code){
         int size = usuarios.size();

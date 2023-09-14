@@ -171,6 +171,7 @@ public class AgregarCurso extends javax.swing.JFrame {
         
         if (listas.controladorCurso.addCurso(nombreCurso, codigo, prof, creds, 0, 0)) {
             mensaje("Curso " + nombreCurso + " añadido!");
+            almacenar();
             dispose();
         }else{
             mensaje("Parece que algo salio mal");
@@ -197,6 +198,13 @@ public class AgregarCurso extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    public void almacenar(){
+        //GUARDAR DATOS
+        boolean ok = listas.almacenarCursosBin();
+        if (ok) System.out.println("Se guardaron los datos");
+        else System.out.println("Al parecer, ocurrio un problema :(");
+    }
+    
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnLimpiarActionPerformed

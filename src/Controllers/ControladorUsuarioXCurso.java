@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ControladorUsuarioXCurso implements Serializable {
-    private ArrayList <UsuarioXCurso> userxcurso;
+    ArrayList <UsuarioXCurso> userxcurso;
     Listas listas;
     
     public ControladorUsuarioXCurso() {
@@ -17,6 +17,7 @@ public class ControladorUsuarioXCurso implements Serializable {
     
     public void recibirListas(Listas listas){
         this.listas = listas;
+        this.userxcurso = listas.arrays.userxcurso;
     }
     
     public int size(){
