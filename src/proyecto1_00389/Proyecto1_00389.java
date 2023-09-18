@@ -15,6 +15,7 @@ public class Proyecto1_00389 {
         listas.obtenerArrays();
         listas.obtenerCursos();
         
+        listas.controladorUsuario.addAdmin(10, "", "Juan Rodas", "", "M", 0);        
 //        listas.controladorUsuario.addAdmin(1, "", "Juan Rodas", "", "M", 0);        
 //        listas.controladorUsuario.addAlumno(10203040, "", "Juan Esteban", "", "M", 2);
 //        listas.controladorUsuario.addAlumno(15954845, "", "María", "", "F", 2);
@@ -67,9 +68,5 @@ public class Proyecto1_00389 {
         Login login = new Login();
         login.recibirListas(listas);
         login.setVisible(true);
-        
-        listas.almacenarArraysBin();
-        listas.almacenarCursosBin();
-        listas.almacenarUsuariosBin();
     }    
 }

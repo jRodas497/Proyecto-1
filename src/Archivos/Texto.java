@@ -65,6 +65,7 @@ public class Texto {
             correo = c1 + "@gmail.com";
                         
             rol = convertir(valores[5]);
+            String g = valores[5].toUpperCase();
             
             valores[4] = valores[4].toUpperCase();
             if (rol == 0) usuario.addAdmin(convertir(valores[0]), "1234", valores[2], correo, valores[4], convertir(valores[5]));
